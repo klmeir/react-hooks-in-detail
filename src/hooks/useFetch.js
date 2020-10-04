@@ -22,11 +22,17 @@ export const useFetch = ( url ) => {
                 if ( isMounted.current ) {
                     setState({                     
                         loading: false, 
-                        error: false,
+                        error: null,
                         data
                     });
                 }   
                                 
+            }).catch( () => {
+                setState({      
+                    data: null,               
+                    loading: false, 
+                    error: 'No se pudo cargar la info'                    
+                });
             });
 
     }, [url]);
